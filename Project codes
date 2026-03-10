@@ -1,0 +1,356 @@
+Intern and Batch Management System
+1. Project Overview
+
+The Intern and Batch Management System is designed to manage intern information and batch details within an organization. The system allows administrators to register interns, generate unique intern ID cards, create and manage batches, and track interns assigned to specific batches.
+
+Each intern will be assigned a batch and will receive a unique ID based on their date of joining and ID card type. The system will also provide features for searching, updating, and managing intern records efficiently.
+
+The application will be developed using Spring Boot for the backend and Angular for the frontend, with a relational database such as MySQL or PostgreSQL to store data.
+
+2. Functional Requirements
+2.1 Intern Management
+2.1.1 Add Intern
+
+The system should allow administrators to add a new intern by entering the following details:
+
+Name (String)
+
+Email (String)
+
+Mobile Number (String)
+
+ID Card Type (Free / Premium)
+
+Date of Joining (Date)
+
+Batch Assignment (Select from available batches)
+
+Once the intern is registered, a unique Intern ID should be automatically generated.
+
+2.1.2 Generate Intern ID
+
+Each intern must have a unique ID generated automatically using the following format:
+
+ID Card Type	Format
+Free	TDA + DateOfJoining (YYYYMMDD) + Sequence Number
+Premium	EMP + DateOfJoining (YYYYMMDD) + Sequence Number
+
+Example IDs:
+
+EMP20241129-001
+
+TDA20241129-001
+
+The sequence number must increment sequentially for each new intern.
+
+2.1.3 Intern List
+
+The system should display a list of all interns with the following details:
+
+Intern ID
+
+Name
+
+Email
+
+Mobile Number
+
+Batch
+
+ID Card Type
+
+Date of Joining
+
+This list will help administrators easily view and manage intern information.
+
+2.2 Batch Management
+2.2.1 Create Batch
+
+Administrators should be able to create a new batch by entering the following details:
+
+Start Date (Date)
+
+The system should automatically calculate the End Date, which must be 6 months after the Start Date.
+
+Example:
+
+Start Date: 01 January 2024
+End Date: 01 July 2024
+
+2.2.2 Assign Interns to Batch
+
+When registering a new intern, the system must require the administrator to assign the intern to an existing batch.
+
+Each batch can contain multiple interns.
+
+2.2.3 Batch List
+
+The system should display a list of all batches including:
+
+Batch Start Date
+
+Batch End Date
+
+Total Number of Interns
+
+Intern Details (Name, ID Card Type, etc.)
+
+This allows administrators to monitor batch activity and intern participation.
+
+2.3 Additional Features
+Update Intern Details
+
+The system should allow administrators to update intern details such as:
+
+Name
+
+Email
+
+Mobile Number
+
+However, the Intern ID must remain unchanged once it is generated.
+
+Delete Intern
+
+The system should allow administrators to delete intern records when necessary.
+
+Batch Overview
+
+Each batch should provide an overview that includes:
+
+Batch information
+
+List of all assigned interns
+
+Intern details such as name, ID card type, and joining date
+
+Search and Filter
+
+The system should support search and filtering capabilities based on:
+
+Intern Name
+
+Batch
+
+ID Card Type
+
+This will help administrators quickly locate specific intern records.
+
+3. Non-Functional Requirements
+3.1 Backend (Java – Spring Boot)
+API Development
+
+The backend should provide RESTful APIs to support the following operations:
+
+Add a new intern
+
+Generate an intern ID
+
+Create batches
+
+Assign interns to batches
+
+Retrieve intern and batch details
+
+These APIs will be used by the frontend application to interact with the database.
+
+Database
+
+A relational database such as MySQL or PostgreSQL will be used to store system data.
+
+Two main tables will be created:
+
+Intern Table
+
+Batch Table
+
+The tables will be connected through a foreign key relationship where each intern belongs to a batch.
+
+ID Generation Logic
+
+The system must implement a custom ID generation mechanism to ensure that:
+
+Each intern receives a unique ID.
+
+The ID follows the required format.
+
+The sequence number increases correctly.
+
+3.2 Frontend (Angular)
+UI Components
+
+The Angular application should include the following user interface components:
+
+Intern Registration Form
+
+Allows administrators to enter intern details
+
+Provides batch selection
+
+Batch Creation Form
+
+Allows administrators to create a batch
+
+Automatically calculates the end date
+
+Intern List View
+
+Displays all registered interns
+
+Provides filtering options
+
+Batch List View
+
+Displays batch information
+
+Shows the number of interns in each batch
+
+Angular Material components such as tables, forms, and dropdown menus should be used to enhance the user interface.
+
+Validation
+
+The system should validate user inputs to ensure data accuracy.
+
+Examples:
+
+Email must follow a valid format
+
+Mobile number must contain valid digits
+
+Intern must be assigned to a batch before submission
+
+Responsive Design
+
+The frontend should be responsive so that the system can be used on:
+
+Desktop
+
+Tablet
+
+Mobile devices
+
+4. System Design
+Batch End Date Calculation
+
+The system automatically calculates the batch end date based on the start date.
+
+Formula:
+
+End Date = Start Date + 6 Months
+
+ID Card Generation
+
+Intern IDs are generated based on:
+
+ID Card Type
+
+Date of Joining
+
+Sequential number
+
+Examples:
+
+EMP20241129-001
+TDA20241129-002
+
+This ensures that each intern has a unique identifier.
+
+5. Technology Stack
+Backend
+
+Programming Language: Java
+
+Framework: Spring Boot
+
+API Type: RESTful APIs
+
+Database: MySQL / PostgreSQL
+
+ID Generation: Custom Java logic or UUID
+
+Frontend
+
+Framework: Angular
+
+UI Framework: Angular Material
+
+HTTP Communication: Angular HTTP Client
+
+Form Validation: Angular Reactive Forms
+
+6. Deliverables
+Backend Deliverables
+
+RESTful APIs for intern and batch management
+
+Database schema for storing intern and batch data
+
+Logic for generating unique intern IDs
+
+Data validation and relationship mapping
+
+Frontend Deliverables
+
+Angular application for managing interns and batches
+
+User interface for adding, updating, and deleting records
+
+Tables to display intern and batch information
+
+Filtering and searching features
+
+7. Timeline and Milestones
+Phase 1 (Week 1–2)
+
+Set up Spring Boot backend project
+
+Design database schema
+
+Develop API endpoints for intern and batch management
+
+Set up Angular frontend project
+
+Create basic UI components
+
+Phase 2 (Week 3–4)
+
+Implement CRUD operations for interns and batches
+
+Implement ID generation logic
+
+Connect Angular frontend with backend APIs
+
+Phase 3 (Week 5–6)
+
+Test backend APIs
+
+Test frontend user interface
+
+Implement validation and filtering features
+
+Prepare application for deployment
+
+8. Future Enhancements (Optional)
+Intern Performance Tracking
+
+The system could include a module to evaluate and track intern performance.
+
+Notifications
+
+Email or SMS notifications could be sent when:
+
+An intern is registered
+
+An intern is assigned to a batch
+
+A new batch is created
+
+Role-Based Access Control
+
+The system could support different user roles such as:
+
+Admin
+
+Manager
+
+Each role would have different permissions within the system.
